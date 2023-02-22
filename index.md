@@ -1,15 +1,15 @@
-## Portfolio
-
+## About
+Hi, my name's Ethan and I'm completing my BS in Information Science at CU Boulder. I've spent 2.5 years at IBM building various data-centric skills like SQL, Python and visual sotrytelling. I'm actively looking for paid data analytics opportunities.
 ---
 
-### Featured Projects
+## Featured Projects
 
-[Project 1 Title](/sample_page)
+[Project 3 Title](http://example.com/)
 <img src="images/dummy_thumbnail.jpg?raw=true"/>
 
 ---
-[Project 2 Title](/pdf/sample_presentation.pdf)
-<img src="images/dummy_thumbnail.jpg?raw=true"/>
+[Project Management with Tensorflow](https://basalt-streetcar-3c0.notion.site/Company-name-generator-e1bcef8f7aa648eeb667b0b7048e412d)
+<img src="images/cng_thumbnail.png?raw=true"/>
 
 ---
 [Project 3 Title](http://example.com/)
