@@ -1,5 +1,5 @@
 ## About
-Hi, my name's Ethan and I'm completing my BS in Information Science at CU Boulder. I've spent 2.5 years at IBM building various data-centric skills like SQL, Python and visual sotrytelling. I'm actively looking for paid data analytics opportunities.
+Hi, my name's Ethan and I'm completing my BS in Information Science at CU Boulder. I've spent 2.5 years at IBM building various data-centric skills like SQL, Python and visual sotrytelling. I'm actively looking for paid data analytics opportunities.<br>
 ---
 
 ## I'm still putting some projects together
