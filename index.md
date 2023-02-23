@@ -8,7 +8,7 @@ Hi, my name's Ethan and I'm completing my BS in Information Science at CU Boulde
 <img src="images/dummy_thumbnail.jpg?raw=true"/>
 
 ---
-[Project Management with Tensorflow](/projects/Company%20name%20generator.md)
+[Project Management with Tensorflow](https://basalt-streetcar-3c0.notion.site/Company-name-generator-e1bcef8f7aa648eeb667b0b7048e412d)
 <img src="images/cng_thumbnail.png?raw=true"/>
 
 ---
