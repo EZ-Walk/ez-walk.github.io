@@ -4,7 +4,9 @@ description: > # your text below (remove <br> elements if you don't need line br
   Take a look around and reach out if you have any data needs!  
   <br>
   <a href="www.linkedin.com/in/ethan-zaruba-walker/">LinkedIn Profile</a>
+  <br>
   <a href="https://medium.com/@rocketwalker">Data Blogs on Medium</a>
+  <br>
   <a href="https://github.com/EZ-Walk">Github</a> 
   
 theme: jekyll-theme-minimal
