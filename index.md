@@ -15,6 +15,14 @@ My name's Ethan,I'm a maker and my medium is technology. While completing my BS 
             </div>
         </a>
     </div>
+    <div style="position:relative;">
+        <a href="https://basalt-streetcar-3c0.notion.site/Solve-Analytics-3f5366399adb4166a15c4d483f7a1a31", target="_blank">
+            <img src="images/IBM_Bee.png" alt="IBM bee logo, linked to project writeup" style="width:100%;">
+            <div style="position:absolute; bottom:0; background-color:black; color:white; width:100%; padding:10px;">
+            <h3 style="margin:0;">IBM Special Project (SOLVE)</h3>
+            </div>
+        </a>
+    </div>
 
   </div>
   <div style="flex: 1; padding: 10px;">
