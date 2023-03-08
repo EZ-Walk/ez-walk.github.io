@@ -4,12 +4,15 @@ My name's Ethan,I'm a maker and my medium is technology. While completing my BS 
 
 ## I'm still putting some projects together
 
-<<<<<<< Updated upstream
-<img src="images/Underconstruction.png?raw=true"/>
-
-=======
 [Racial Justice Hackathon (2nd place)](https://basalt-streetcar-3c0.notion.site/One-page-writeup-aa8b0d8e9bf3494b9117db7b62113f8e)
-<img src="images/Black_Lives_Matter_logo.png?raw=true"/>
+<div style="position:relative;">
+  <a href="https://basalt-streetcar-3c0.notion.site/One-page-writeup-aa8b0d8e9bf3494b9117db7b62113f8e">
+    <img src="images/Black_Lives_Matter_logo.png" alt="Black lives matter logo, linked to project writeup" style="width:100%;">
+    <div style="position:absolute; bottom:0; background-color:black; color:white; width:100%; padding:10px;">
+      <h3 style="margin:0;">Hack for Racial Justice</h3>
+    </div>
+  </a>
+</div>
 
 ---
 [Project Management for NLP with Tensorflow](https://basalt-streetcar-3c0.notion.site/Company-name-generator-e1bcef8f7aa648eeb667b0b7048e412d)
@@ -35,6 +38,5 @@ My name's Ethan,I'm a maker and my medium is technology. While completing my BS 
 
 
 ---
->>>>>>> Stashed changes
 <p style="font-size:11px">Page template forked from <a href="https://github.com/evanca/quick-portfolio">evanca</a></p>
 <!-- Remove above link if you don't want to attibute -->
