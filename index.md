@@ -1,5 +1,5 @@
 ## About
-My name's Ethan, I'm a maker and my medium is technology. While completing my BS in Information Science at CU Boulder, I've spent 3.5 years in industry building various data-centric skills like SQL, Python, NLP and visual sotrytelling. I spent 2.5 years in the corporate atmosphere at IBM building data pipelines, business intelligence applications and practicing participatory design. Afterwards I completed internships in the tech-health and web3 industries. I'm actively looking for the next opportunity to grow my skills building with technology.
+I'm a natural builder and creative problem solver that has developed a passion for working with data. I have been coding and team building since middle school to help solve technical problems. I've had the pleasure of learning from very talented people in IT administration, AR/VR software development, secure data engineering and analysis, information architecture and ML algorithm development. The faculty at the University of Colorado, Boulder, fostered my love for studying data that represents human behavior and applying principles of psychology to explain that behavior. Since graduation I have been seeking work with health-tech products that center the patient experience. I am also earning an EMT-Basic certification.
 ---
 
 ## I'm still putting some projects together
