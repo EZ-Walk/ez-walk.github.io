@@ -1,0 +1,752 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Company name generator</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="e1bcef8f-7aa6-48ee-b667-b0b7048e412d" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">♨️</span></div><h1 class="page-title">Company name generator</h1><p class="page-description"></p></header><div class="page-body"><p id="b9bfe1f1-b372-49b9-8624-57ed7cc3f3cf" class="">
+</p><p id="f6c02dba-5029-4a4a-83f0-f67f8d344b88" class="">The goal of this project is to learn a new technology in a week. I want to learn the basics of text generation with a Recurrant Neural Network. The project will take 1 week from planning to deployment. </p><blockquote id="c5c9cb80-adb0-4ab6-93f8-5ff12ab82252" class="">Win Case: At the click of a button I can generate a one or two word name for my new company</blockquote><p id="d0d15ccd-8413-4ab3-95ef-2d9246a14cd3" class="">I am using this day-by-day planner to keep track of the tasks required to complete the project and achieve the win case.</p><figure id="a6d9a7b4-4e89-4d60-b171-553f393d5cec" class="link-to-page"><a href="https://www.notion.so/Project-Schedule-a6d9a7b44e894d60b171553f393d5cec?pvs=21"><span class="icon">📒</span>Project Schedule</a></figure><h2 id="4a57a7ec-22a3-47b0-8830-c8b8c9764d59" class="">The End Result</h2><p id="d59d26a0-e328-4090-ac06-da0a4392cc98" class="">While I don&#x27;t think it will be naming anyone&#x27;s children anytime soon, it clearly has begun to recognize the structure and patterns of company names. To it&#x27;s credit, it made multiple names that made me laugh and a few that I might use for future projects. This functionality, although limited, paired with my now much more comprehensive understanding of RNNs has made this project a tremendous success in my mind. </p><p id="f3c80a31-45af-446e-9f13-89eaa490bbd9" class="">
+</p><figure id="6856231b-0864-4467-9ad8-7bce847ac618"><div class="source"><a href="Company%20name%20generator%20e1bcef8f7aa648eeb667b0b7048e412d/nameGenVid3.mov">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0e6b22ec-4297-499a-9829-36383641010e/nameGenVid3.mov</a></div></figure><p id="e59edd72-ecf5-4849-9be1-0623608ebd42" class="">
+</p><p id="29878b92-905e-4d01-becd-e4b6b54c544b" class="">I was unable to host the app for free due to the size of the files required to run the dashboard but there is a quickstart guide at the top of the <a href="http://readme.md">README.md</a> in github that can give you access to the dashboard with minimal setup.</p><h3 id="26c395d2-482a-482a-bf7d-8dc1d8586efc" class="">Things I would do if I had another week:</h3><ul id="a9739b4b-c9fd-4d36-8519-e6816c0e08f1" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">generate a random sequence of characters and generate on that instead of user defined input</span><div class="indented"></div></li></ul><ul id="a06ec319-80c3-4844-baae-42fe1068beab" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">have a way of scoring the resulting names against the training data.</span><div class="indented"><p id="fc1c50a2-72b7-4825-98d0-612031d7e969" class="">This would be a sort of metric to measure the model&#x27;s understanding of the training data</p></div></li></ul><ul id="b6e506d7-31ec-4276-8091-164f7a5879fd" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Add a tagline to each generated company name</span><div class="indented"></div></li></ul><h3 id="62ee49d5-6343-4eb7-990c-ddf3e5137460" class="">Technologies used:</h3><ul id="2f7eb78f-2a0d-4dfa-9088-51e312605161" class="bulleted-list"><li style="list-style-type:disc">For the project&#x27;s file structure and general organization:<figure id="a875f549-f0cd-4aae-ba66-e36ca9aaa547"><a href="https://github.com/drivendata/cookiecutter-data-science" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">drivendata/cookiecutter-data-science</div><div class="bookmark-description">A logical, reasonably standardized, but flexible project structure for doing and sharing data science work. - drivendata/cookiecutter-data-science</div></div><div class="bookmark-href"><img src="https://github.com/favicon.ico" class="icon bookmark-icon"/>https://github.com/drivendata/cookiecutter-data-science</div></div><img src="https://avatars3.githubusercontent.com/u/9515589?s=400&amp;v=4" class="bookmark-image"/></a></figure></li></ul><ul id="5204e096-0d00-497d-b794-51c8cc185680" class="bulleted-list"><li style="list-style-type:disc">For the machine learning aspect of the project I used Tensorflow and generally followed this guide:<figure id="6b7b0c4c-ac74-4a26-90c2-53025065da3f"><a href="https://www.tensorflow.org/tutorials/text/text_generation#process_the_text" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Text generation with an RNN | TensorFlow Core</div><div class="bookmark-description">This tutorial demonstrates how to generate text using a character-based RNN. We will work with a dataset of Shakespeare&#x27;s writing from Andrej Karpathy&#x27;s The Unreasonable Effectiveness of Recurrent Neural Networks. Given a sequence of characters from this data (&quot;Shakespear&quot;), train a model to predict the next character in the sequence (&quot;e&quot;).</div></div><div class="bookmark-href"><img src="https://www.gstatic.com/devrel-devsite/prod/v050cadc3f3cf927d4089880349cc4dea1a9dab3bc6036e7a65cc361fddd65555/tensorflow/images/favicon.png" class="icon bookmark-icon"/>https://www.tensorflow.org/tutorials/text/text_generation#process_the_text</div></div><img src="https://www.tensorflow.org/images/tf_logo_social.png" class="bookmark-image"/></a></figure></li></ul><ul id="889d8ee8-8ae5-447b-ad8a-84c47dbdf25c" class="bulleted-list"><li style="list-style-type:disc">For the product Dashboard and UI, I used Streamlit:<figure id="51303af4-da47-4229-8a55-f5b52ff26ef3"><a href="https://towardsdatascience.com/streamlit-deploy-a-machine-learning-model-without-learning-any-web-framework-e8fb86079c61" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Streamlit- Deploy a Machine Learning Model without learning any web framework.</div><div class="bookmark-description">It can be very tiresome for many people to work on an actual data science project and then spend some more time working on a web framework, backend, and frontend. For a data scientist or a machine learning engineer, working on these technologies is a secondary task.</div></div><div class="bookmark-href"><img src="https://miro.medium.com/fit/c/256/256/1*ChFMdf--f5jbm-AYv6VdYA@2x.png" class="icon bookmark-icon"/>https://towardsdatascience.com/streamlit-deploy-a-machine-learning-model-without-learning-any-web-framework-e8fb86079c61</div></div><img src="https://miro.medium.com/max/1200/1*-XAbdbj8VCvFewYDr1mqZQ.png" class="bookmark-image"/></a></figure></li></ul><ul id="92f7c9c6-4d4e-4e77-8e24-4e633b25288e" class="bulleted-list"><li style="list-style-type:disc">For planning, note-taking and task tracking, I used Notion:<figure id="95942cca-ba53-4548-81ec-8c5e0bd49999"><a href="https://www.googleadservices.com/pagead/aclk?sa=L&amp;ai=DChcSEwjzmurR-dnpAhVOvsAKHZ1MDEkYABAAGgJpbQ&amp;ohost=www.google.com&amp;cid=CAESQeD2P5IAsEYMEdpCjNxp5Oy_IPMM-2q4ql4pmCdj8h8CvORBIJ95quMeUcGBILZK8iWnCXF3IeAv_5oSBBtYPFiD&amp;sig=AOD64_0ybBTZOezSjJjYam8aeZMy3gMDIg&amp;q=&amp;ved=2ahUKEwiAjOHR-dnpAhWQVc0KHZnJBHAQ0Qx6BAgfEAE&amp;adurl=" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Notion - The all-in-one workspace for your notes, tasks, wikis, and databases.</div><div class="bookmark-description">A new tool that blends your everyday work apps into one. It&#x27;s the all-in-one workspace for you and your team</div></div><div class="bookmark-href"><img src="https://www.notion.so/images/favicon.ico" class="icon bookmark-icon"/>https://www.googleadservices.com/pagead/aclk?sa=L&amp;ai=DChcSEwjzmurR-dnpAhVOvsAKHZ1MDEkYABAAGgJpbQ&amp;ohost=www.google.com&amp;cid=CAESQeD2P5IAsEYMEdpCjNxp5Oy_IPMM-2q4ql4pmCdj8h8CvORBIJ95quMeUcGBILZK8iWnCXF3IeAv_5oSBBtYPFiD&amp;sig=AOD64_0ybBTZOezSjJjYam8aeZMy3gMDIg&amp;q=&amp;ved=2ahUKEwiAjOHR-dnpAhWQVc0KHZnJBHAQ0Qx6BAgfEAE&amp;adurl=</div></div><img src="https://www.notion.so/images/meta/default.png" class="bookmark-image"/></a></figure></li></ul><h1 id="a3fe9b75-e2d0-44b2-bfcc-187c671ee85f" class="">Day 1: Data Processing and building the model</h1><ul id="5062a742-30bc-41fa-b0e1-17e7bd5dca71" class="toggle"><li><details open=""><summary>Scraping training data from the web with Beautiful Soup</summary><p id="de48319a-42cd-4cc8-b298-b9f82a13614e" class="">As a jumping off point I am starting with the list of Fortune 1000 companies because if you name a company based on already successful companies you cant fail, right? Using Python&#x27;s requests library and beautiful soup I am going to scrape the names from the table on a web page (found here: &#x27;<a href="https://cyber.harvard.edu/archived_content/people/edelman/fortune-registrars/fortune-list.html">https://cyber.harvard.edu/archived_content/people/edelman/fortune-registrars/fortune-list.html</a>&#x27;). My scrape_names() is shown below. The return value is a list of company names as strings.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c293c0c4-63e5-4dda-9c87-be5bf4e71b96" class="code"><code class="language-Python">def scrape_names(url, tableColumnIndex): # This function could be expanded to to accept a column name and then find the index of that column itself
+    r = requests.get(url)
+    soup = BeautifulSoup(r.text, &#x27;html.parser&#x27;)
+    
+    # find the table and extract the desired column
+    tableColumn = []
+    for item in soup.find_all(&#x27;tr&#x27;): # find all table rows in the page
+        td = item.find_all(&#x27;td&#x27;)[tableColumnIndex].get_text() # The &quot;1&quot; here will correspond to the column of the data we want to collect
+        tableColumn.append(td)
+    
+    return tableColumn</code></pre><p id="fa974600-0102-4da2-814e-705f40409026" class="">This function could be expanded in the following ways:</p><ul id="79b906c4-0c1b-4790-aad4-202febdfe2ba" class="bulleted-list"><li style="list-style-type:disc">accept a columnName parameter and then find the index itself instead of being told the index explicitly</li></ul><ul id="4ae91a44-7fd7-48ae-8272-e2f3631df52a" class="bulleted-list"><li style="list-style-type:disc">Search through multiple tables on a page to find the columnName parameter</li></ul><ul id="2ae3e6ba-0c64-4e3d-8799-e91d67efb57f" class="bulleted-list"><li style="list-style-type:disc">Return the result set in a variety of formats</li></ul></details></li></ul><ul id="7b974a9c-b403-4a4b-b8ca-2d31acfc9fa8" class="toggle"><li><details open=""><summary>Preprocessing our data </summary><p id="f251b49e-3011-47d9-a3e9-dfe129a5a50f" class="">In the data preparation steps (The 4 steps under the &quot;Process the text&quot; subheading) I am noticing that company names are being broken up into incomplete fragments. </p><blockquote id="dda8d2b2-9483-4801-8480-6a4ecd7c9520" class="">&#x27;Wal-Mart St&#x27;<br/>&#x27;ores Exxon&#x27;<br/>&#x27; Mobil Gen&#x27;<br/>&#x27;eral Motors&#x27;<br/>&#x27; Ford Moto&#x27;<br/></blockquote><p id="d3a0a338-49c5-4884-b8a4-bca4ceb2fb49" class="">It is my intuition that telling an RNN that &quot;Wal-Mart St&quot; is an acceptable name, will result in gibberish name generation. I think that making sequences out of each actual name and then padding those sequences might give us more realistic predictions.</p><p id="b28fe978-0d52-4820-8820-4a33927dba56" class="">Ok, Here is what I came up with... The tutorial would have you split the text into items of length = seq_length which is an arbitrary value, and then tokenize those items. Instead, I chose to loop through the <code>names</code> list and tokenize each element using the <code>char2idx</code> mapping object we created earlier. That looks like this:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1dda0dae-6c4b-428c-8b75-ef8f7081cf2a" class="code"><code class="language-Python">raw_input = []
+for name in names:
+    raw_input.append([char2idx[c] for c in name])</code></pre><p id="9bdcb6ee-76c3-4ec7-acbe-71f810590669" class="">Then I call <code>pad_sequences()</code> with <code>padding=&#x27;post&#x27;</code>, <code>truncating=&#x27;post&#x27;</code>, and <code>maxlen=15</code>. This will ensure that the encoding of the name will start on the 0th index of the sequence, longer names will have the tail truncated and no names will be longer than 15 characters. Exxon Mobil = <code>[14, 59, 59, 50, 49, 0, 22, 50, 38, 45, 47, 0, 0, 0, 0]</code> From here on out we will use <code>padded_inputs</code> instead of <code>text_as_int</code> . </p><p id="40b45948-d104-4011-8920-a18fec2833cf" class="">Examine our <code>char_dataset</code> with the following code:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6ae26f9d-1ebb-4801-aacd-0aba74f62867" class="code"><code class="language-Python">char_dataset = tf.data.Dataset.from_tensor_slices(padded_inputs)
+
+# examine
+for i in char_dataset.take(2):
+    print(&quot;&quot;.join(idx2char[i.numpy()]))
+
+for s in char_dataset.take(2):
+    print(s) # prints the first 2 tensors in the char_dataset which are &quot;Wal-Mart Stores&quot; and &quot;Exxon Mobil&quot;</code></pre><p id="fae9f283-1ad1-40f0-ae30-196c9d4dfb3a" class="">Output: </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="40937d12-e37e-443b-8d4d-b3f20a9cc5ea" class="code"><code class="language-Plain Text">Wal-Mart Stores
+Exxon Mobil    
+tf.Tensor([32 37 47  5 22 37 53 55  0 28 55 50 53 41 54], shape=(15,), dtype=int32)
+tf.Tensor([14 59 59 50 49  0 22 50 38 45 47  0  0  0  0], shape=(15,), dtype=int32)</code></pre><p id="8214322c-65ee-41c7-963c-f27a53fecc9c" class="">
+</p><p id="e1e560a6-9d1a-4c61-ac72-e22b572a9228" class="">Another necessary change to the tutorial has to be made. The tutorial uses the <code>batch()</code> method to convert the long string of shakespearean text into sequences of length = <code>seq_length</code>. That sequence will then be shifted to create inputs and targets. However we already have our sequences as elements in the char_dataset so we will do</p><p id="54c70299-df0e-48c3-9a6e-92c243e46bb5" class=""> <code>dataset = char_dataset.map(split_input_target)</code></p><p id="3c78c7f6-463d-4242-b51b-a6946ecc0bfd" class="">instead of </p><p id="3fd07b9a-3f39-4f65-8796-a03ec20f9639" class=""><code>dataset = sequences.map(split_input_target)</code></p><p id="cbb17298-2928-4c27-870d-243b82864482" class="">Printing our inputs and targets should give us: </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7e815888-c66a-4a17-ba12-5c1a4bebaa7f" class="code"><code class="language-Plain Text">input data: &#x27;Wal-Mart Store&#x27;
+target data: &#x27;al-Mart Stores&#x27;
+input data: &#x27;Exxon Mobil   &#x27;
+target data: &#x27;xxon Mobil    &#x27;
+input data: &#x27;General Motors&#x27;
+target data: &#x27;eneral Motors &#x27;
+</code></pre></details></li></ul><ul id="57dfad95-65f9-447a-bc8c-caa114e5d424" class="toggle"><li><details open=""><summary>Build our Model v1</summary><p id="52acf8a8-0802-4537-8c10-7c5e246657f4" class="">All that is left is to build and train the model, these steps are the same as in the tutorial. When we try the model we get some encouraging information, An untrained model predicts <code>z-ilTGIHKH&#x27;I`A</code> to be the next character. This is encouraging because even though it is gibberish, it looks to be about the right length and consistency of what we want our answers to look like. I built the same model as they have in the tutorial with the following default params </p><p id="2472a68c-d71b-487a-8ee8-337d0564d4ed" class=""><code>vocab_size = len(vocab)</code></p><p id="dbff4454-0505-404f-8b8f-1a3bf5dfd00a" class=""><code>embedding_dim = 256</code></p><p id="06e83f3e-fcdf-4a5d-934f-5421179822bf" class=""><code>rnn_units = 1024</code></p><p id="3688c8c8-c133-491d-b4d4-ddaaf5819206" class="">After training the model for 100 epochs, I ran the same code that I did earlier to produce &quot;<code>ilTGIHKH&#x27;I`A</code>&quot;, the results this time were remarkably better. </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1c0e3cab-89db-4595-a9a1-776a9f76411a" class="code"><code class="language-Python">for input_example_batch, target_example_batch in dataset.take(1):
+    ex_batch_predictions = model(input_example_batch)
+    print(ex_batch_predictions, &quot;# (batch_size, sequence_length, vocab_size)&quot;)
+
+sampled_indicies = tf.random.categorical(ex_batch_predictions[0], num_samples=1)
+sampled_indicies = tf.squeeze(sampled_indicies, axis=1).numpy()</code></pre><p id="983ef2ee-5fb6-436c-bccd-67d874b65c0d" class="">
+</p><p id="5ce42b52-36b8-442b-a5c3-2e84c8d74eef" class="">Decoding the returned <code>sampled_indicies</code> yielded the model&#x27;s first name, &quot;.ooied Western&quot;. While it&#x27;s not perfect, the network clearly understands the need to capitalize the first letter after a space. Even though the generation process is a little rough and not exactly what we are looking, for I am happy to call it a day and leave additional testing and tuning for tomorrow.</p><p id="af17664e-16c9-4d33-a746-3de54d300eeb" class="">And with that, Day 1 is over.</p><ul id="dcc438f4-17ea-403f-98a4-aa28e5522fd6" class="bulleted-list"><li style="list-style-type:disc">All that is left is to build and train the model, these steps are the same as in the tutorial. When we try the model we get some encouraging information, An untrained model predicts <code>z-ilTGIHKH&#x27;I`A</code> to be the next character. This is encouraging because even though it is gibberish, it looks to be about the right length and consistency of what we want our answers to look like. Lets train our model...</li></ul></details></li></ul><h1 id="7ad20350-1c8f-437e-92a2-3e31c6351269" class="">Day 2: Tuning, Data Expansion and Dashboard Design</h1><ul id="475d7ad1-30d5-45f9-9140-9bafad28d06f" class="toggle"><li><details open=""><summary>Lets do some tuning...</summary><p id="dcb7af18-0cd1-4761-bf9b-3fe553fa8626" class="">After switching the batch size to 1 and just 10 epochs of training, the model was producing names like <code>&#x27; MU X leli   a&#x27;</code> based on the random input <code>[[31  8 33 10  9 19 37 26 50 13 10 12 55 25]]</code> . </p><p id="7a370480-238d-4b58-9c1f-e1ce92a6d4f1" class="">After increasing the epochs to 50, the resulting names were equally as disappointing, producing even more gibberish. Something important to note about this adjustment is that the loss started increasing from .7571 after just 10 epochs so there is definitely some overfitting when training for 50 epochs. Here are some examples for your own entertainment</p><blockquote id="bbe298f4-bfb9-4880-8dde-1b68917c9081" class="">&#x27;. uaiSeloToo &#x27;<br/>&#x27;ueon hP o C&#x27;<br/>&#x27;ueRi eAnlwoe&#x27;<br/>&#x27;oi lI.S T &#x27;<br/>&#x27; Tlee eaaiBTd&#x27;<br/></blockquote><p id="79cf565e-9259-489a-9d8a-9e109208f7d0" class="">After decreasing the training epochs to 15 and adding the optional inputText parameter to the <code>generate_name()</code> function the results weren&#x27;t much better. These were created with input=&quot;Ethan&quot;</p><blockquote id="fc96a6e8-fd5e-4c6e-a2d9-4b2a58e72ce9" class="">&quot;mrmn&#x27;&quot;<br/>&#x27;mmela&#x27;<br/>&#x27;iea d&#x27;<br/>&#x27;BeTl &#x27;<br/>&#x27;llel &#x27;<br/></blockquote><p id="d0a2001b-0daf-4523-b257-d003e9cd7018" class="">Something I realized is that I set the batches to 1 when I ran <code>batches = char_dataset.batch(64, drop_remainder=True)</code> earlier on. Returning this to 64 had an interesting effect. The loss in training started much higher, 2.248, and then leveled off around the same .75 as the other configurations. When generating a name with unseen data as input, <code>input=&quot;Ethan&quot;</code>, the results were slightly better and even included an anagram:</p><blockquote id="5b4b1e21-02fb-4b41-99a0-17d1782048bb" class="">&#x27;leird&#x27;<br/>&#x27;ahor &#x27;<br/>&#x27;BmomB&#x27;<br/></blockquote><p id="5ef998c7-a39a-41cc-bc0e-a5a3f7bc0c22" class="">But when I used a name from the training data as input, <code>input=&#x27;Exxon Mobil&#x27;</code>, the results were <strong>much</strong> better. It&#x27;s obvious that the network does much better on data it has seen before which leads me to believe it needs a larger training dataset.</p><blockquote id="50a766b3-7515-433e-be70-f9a1d418bb43" class="">&#x27;n on Cobil &#x27;<br/>&#x27;Oper Mobil &#x27;<br/>&#x27;ceensMebil &#x27;<br/></blockquote><p id="d73cbc04-98fa-4b4b-a59c-b72d7ccda2ff" class="">Changing the GRU layer to a bidirectional layer yielded a loss metric that started at only .919 and decreased to .056 over 10 epochs. Generating a name with text as input returns almost identical names and removing that input returns more gibberish.</p><p id="95d559cd-4803-43fc-a105-b7b97e896936" class="">Removing the Bidirectional GRU resulted in some more encouraging results when using the Tutorial&#x27;s <code>generate_text()</code> method. Occasionally the model would predict a capitalized word like &quot;Energy&quot; or &quot;Bancorp&quot; or &quot;Motors&quot; or something on top of the start string which is &quot;th&quot; in this case.</p><blockquote id="bc1489da-4866-4736-b4fb-b78c39d35be4" class="">thon Bancorp<br/>theal Motors<br/>thelley Stre<br/>thellet<br/></blockquote><p id="4a623e1b-562d-4599-89b2-9b7077f88775" class="">Adjusting the temperature setting on the generate text function allows me to generate more exciting names including one that looks like Texas Instruments. I would go on to find a number of names that are very similar to existing companies.</p><blockquote id="e46651aa-b327-4ba4-892a-0043a04c90b5" class="">PenMark Information<br/>Perex Holdings <br/>tiTexas Industree<br/>Tilwell Financial<br/>Glens Thole Foods<br/></blockquote><p id="eba9baeb-f77c-439b-9918-743cf6280fc0" class="">With names like these I am comfortable with where the model is on it&#x27;s predictions. I am going to consider the tuning done for now and cross this off the list. Here are some things that Imight try if I wanted to continue tuning.</p><ul id="ddd4e64a-ab03-4028-aac4-a201c67aa1c2" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Use an LSTM instead of the GRU, try both unidirectional and bidirectional</span><div class="indented"></div></li></ul><ul id="4974d15f-ad4f-471d-be6b-519bb3401f27" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Make the GRU Bidirectional</span><div class="indented"></div></li></ul><ul id="60d2578c-59dd-41d5-b48c-3e111338d068" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Experiment with additional Dense layers</span><div class="indented"></div></li></ul><ul id="12262b63-4c1e-445a-9984-f3cd4136680b" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Adjust embedding dimension and rnn_units for each layer</span><div class="indented"></div></li></ul><ul id="a6fbe3bd-912a-46d5-90fd-7a8bed5566f2" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Adding an additional GRU layer</span><div class="indented"></div></li></ul></details></li></ul><ul id="b5da95a3-a19f-4392-ae14-6fd94931b82c" class="toggle"><li><details open=""><summary>Additional data gathering</summary><p id="4049ca4b-3c8c-4188-91db-1feeca8f4218" class="">Generating company names based on the Fortune 1000 companies is great and all but I want to expand this model&#x27;s capabilities to other sets of data too. I have a couple of ideas for new data sets, one is baby names and the other is planet names. Lets get some data sets for each of these and then train the model on those to see how it does. The following code scrapes the top 1000 baby boy names from a website.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c0dede59-9b67-4822-895b-83de4a5fe9da" class="code"><code class="language-Python">url = &#x27;https://www.whattoexpect.com/baby-names/list/top-baby-names-for-boys/&#x27;
+# url = &#x27;https://www.whattoexpect.com/baby-names/list/top-baby-names-for-girls/&#x27;
+r = requests.get(url)
+soup = BeautifulSoup(r.text, &#x27;html.parser&#x27;)
+listItems = soup.find_all(&#x27;li&#x27;)
+# for i in range(len(listItems)):
+#     if &#x27;Liam&#x27; in listItems[i]:
+#         print(i)
+babyNames = []
+for name in listItems[65:-22]:
+    babyNames.append(name.text)</code></pre><p id="2601beae-d564-405d-a037-809eb747613b" class="">This definitely created some interesting names for your child, I found &quot;ethaan&quot; pretty quickly but there is a lot of garbage.</p><blockquote id="812b80b3-54f1-4d2a-aeab-0c7f9e351898" class="">axton<br/>aclison<br/>bitton<br/>bLaham<br/></blockquote><p id="59d28d57-cdc5-4e43-8b45-a0695d74acfe" class="">Now lets try training on a list of boy and girl names to see what we get. Training time is significantly longer but it is worth the wait because these names are much more acceptable.</p><blockquote id="ae3ecb5c-c08c-4b39-86c9-715e6c09ce9f" class="">bella<br/>bert<br/>minna<br/>masen<br/></blockquote><p id="80d8352f-2cf3-463f-9f02-5b87a78c0d25" class="">These are just a few of the ones that stood out while I generated some names. I am not sure what the goal was here because anything that isn&#x27;t a recognizable name already sounds kind of ridiculous. The company names sound much better. </p></details></li></ul><ul id="74a7d4fc-8972-4729-925c-1c558da49d66" class="toggle"><li><details open=""><summary>Design a dashboard for the model to live on</summary><p id="09ff9dc3-039e-45a5-b612-c7a9b80d4332" class="">My immediate thought is to build a dashboard using Dash and flask and to put inside a docker container that can run on my home server and be connected to a domain name. I&#x27;d like to have a text box for users to type in and then as they type predicted names will be displayed beneath the text box. I would also like to include a slider for the temperature setting of the <code>generate_text()</code> method. Another important feature will be a dropdown menu allowing users to select the training data that the model uses. This will allow for expansion into things like baby names or planet names. Lastly I will need a visualization because you cant have a dsahboard without one. For this I will use Jianzheng Liu&#x27;s Python library found here: </p><figure id="e372af3d-208f-4a77-a583-6437d1c04b24"><a href="https://github.com/jzliu-100/visualize-neural-network" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">jzliu-100/visualize-neural-network</div><div class="bookmark-description">Inspired by the work of Milo Spencer-Harper and Oli Blum, I created a simple Python module to visualize Multi-Layer Perceptron Neural Networks. This module is able to: Show the network architecture of the neural network (including the input layer, hidden layers, the output layer, the neurons in these layers, and the connections between neurons.)</div></div><div class="bookmark-href"><img src="https://github.com/favicon.ico" class="icon bookmark-icon"/>https://github.com/jzliu-100/visualize-neural-network</div></div><img src="https://github.com/jzliu-100/visualize-neural-network/raw/master/img/ANN_1.png" class="bookmark-image"/></a></figure><p id="f4d09e08-fbfe-4a2e-a1a3-0ef5b19a883b" class="">Thats the design for the dashboard and with that done it is time to end Day 2.</p></details></li></ul><h1 id="01f94565-9786-4d28-8da8-55e0fa9fb57e" class="">Day 3: Building the Dashboard</h1><p id="7a5a8385-43d2-4e1a-adf0-6d97fa09bba0" class="">Today&#x27;s focus is the dashboard that the a model will live on. This is important because the model may as well not exist if it can&#x27;t function and be shared over the internet. I am going to use the Streamlit library because it seems to be popular in the DS and ML communities for it&#x27;s simplicity and ease of development compared to other web frameworks. Working off the design from yesterday I&#x27;ll start by creating all of the elements that will be on the page and then work on connecting the model to those components. Using this wonderful guide and the provided Github repository as a guide I made my own dashboard. </p><figure id="c8023b82-0d26-43ca-94d0-851ca8eb62e7"><a href="https://towardsdatascience.com/streamlit-deploy-a-machine-learning-model-without-learning-any-web-framework-e8fb86079c61" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Streamlit- Deploy a Machine Learning Model without learning any web framework.</div><div class="bookmark-description">It can be very tiresome for many people to work on an actual data science project and then spend some more time working on a web framework, backend, and frontend. For a data scientist or a machine learning engineer, working on these technologies is a secondary task.</div></div><div class="bookmark-href"><img src="https://miro.medium.com/fit/c/256/256/1*ChFMdf--f5jbm-AYv6VdYA@2x.png" class="icon bookmark-icon"/>https://towardsdatascience.com/streamlit-deploy-a-machine-learning-model-without-learning-any-web-framework-e8fb86079c61</div></div><img src="https://miro.medium.com/max/1200/1*-XAbdbj8VCvFewYDr1mqZQ.png" class="bookmark-image"/></a></figure><p id="6c13d1d1-6bab-4211-9cbc-dc94a107b483" class="">It is only once I ran my dashboard that I discovered that my training checkpoint files were being saved in Google Collab instead of on my local filesystem making it impossible to load the model from those checkpoint files. To solve this I manually downloaded the checkpoint files from the last training epoch and dragged them into my project directory where the Streamlit app can access them. Success! After 5 hours the dashboard is finally operational. To fix the downaloading issue, I manually downloaded the checkpoint, ckpt_10.index, ckpt_10.data-00000-of-00002 and ckpt_10.data-00001-of-00002 files and placed them in my app&#x27;s checkpoint directory. Next I added <code>.expect_partial()</code> to <code>model.load_weights(tf.train.latest_checkpoint(checkpoint_dir)).expect_partial()</code> in the <code>load_model_from_checkpoint()</code> function.</p><p id="ba4ba05a-a2b6-4790-a5d0-2e90b6c1d081" class="">
+</p><h1 id="ea940a97-c2ee-48f1-9f0f-7b6fef3d6187" class="">Day 4: Result Filtering and Deploying the Dashboard</h1><p id="67789501-4a28-431e-a803-93567f265f23" class="">Today&#x27;s focus is on polishing the model in the context of the dashboard and wrapping up the project. </p><ul id="63f0690f-8f3b-4b59-b3bf-25056c382f9b" class="toggle"><li><details open=""><summary>Result filtering</summary><p id="08ab53f3-50d5-4811-a610-2f33aa5b6b25" class=""> I am adding a result filtering check to the <code>generate_text()</code> call. The result filtering currently checks two conditions, </p><ol type="1" id="5f5e3084-57ac-4c75-aa84-fde2b8ab1be8" class="numbered-list" start="1"><li>the name we generate in the current step is not identical to the starting string</li></ol><ol type="1" id="54201b8c-9792-49ba-8832-a4f8be5aa0db" class="numbered-list" start="2"><li>the name we generate has not already been generated</li></ol><p id="5a9d6d06-eacc-48bf-985a-d71d74b5c6d4" class="">When these two conditions evaluate to <code>True</code>, we need to generate a new name until they are both <code>False</code>. The code for this is below along with a step-by-step explanation.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="0b472815-cbdc-49d5-a0b0-534b7170c726" class="code"><code class="language-Python">generatedNames = [] # establish empty variables
+genName = &#x27;&#x27;        # ^^^^
+cond1 = (genName == start_string) # Condition 1
+for i in range(int(numNames)):
+    genName = generate_text(model, start_string, temp, char2idx, idx2char)
+    cond2 = (genName in generatedNames) 
+    if cond1 or cond2:
+        print(&#x27;{} == {}&#x27;.format(genName, start_string))
+        while cond1 or cond2:
+            print(&#x27;Trying again...&#x27;)
+            genName = generate_text(model, start_string, temp, char2idx, idx2char)
+            cond2 = (genName in generatedNames) 
+            print(&#x27;Now this: {} ?= {}&#x27;.format(genName, start_string))
+    # st.write(&#x27;{}: {}&#x27;.format(i+1, genName))
+    generatedNames.append(genName)
+st.write(generatedNames)</code></pre><ul id="64983a01-ec0d-4565-b5e5-b69172e70216" class="bulleted-list"><li style="list-style-type:disc">Where <code>numNames</code> is the value of the dropdown in the sidebar, either 5, 10 or 15. </li></ul><ul id="d6f760b2-b740-4df2-85fe-46148a91f58e" class="bulleted-list"><li style="list-style-type:disc">Generate a name with the start sting as input. </li></ul><ul id="c9f811f1-e462-4ddf-b961-873c9b009f08" class="bulleted-list"><li style="list-style-type:disc">Evaluate the truthiness of condition 2, is the name we generated in our list of names</li></ul><ul id="32abf7c3-02f6-492d-be49-fbc662ebfab0" class="bulleted-list"><li style="list-style-type:disc">If the name generated is identical to start string <code>or</code> it has been generated already:<ul id="0859e0f0-9005-4dfd-b84b-64813a135c31" class="bulleted-list"><li style="list-style-type:circle">while this is the case, generate a new name and check the truthiness again</li></ul></li></ul><ul id="f46d6984-f546-434d-9a00-b88eb1734fbc" class="bulleted-list"><li style="list-style-type:disc">Once we get a name that evaluates both conditions to <code>False</code> we can add it to the list and write the list to the app</li></ul></details></li></ul><ul id="3f56b7dc-a67d-44bb-b151-4ebaf18d57ba" class="toggle"><li><details open=""><summary>Deploying the Streamlit app</summary><p id="6f5102d2-f0ea-49d7-9dad-446b92985e48" class="">After a little bit of googling it would appear that the only free option is to deploy the streamlit app on Heroku&#x27;s free tier. Here is the forum post that has led me to this decision, </p><figure id="2ba2f223-da40-4a0a-8f09-cd5e68c346db"><a href="https://discuss.streamlit.io/t/hosting-streamlit-on-github-pages/356/18" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Hosting streamlit on github pages</div><div class="bookmark-description">Hello devs! i am a student that just stumbled upon this library and curious if i&#x27;m able to host it on github pages 😃 otherwise is there any other free-tier platform that I can host and deploy this app on a website? Would love to give it a try!</div></div><div class="bookmark-href"><img src="https://aws1.discourse-cdn.com/standard10/uploads/streamlit/optimized/2X/d/da39c05d29f5d9d6cc13c8c5901c5cc2f602fb7d_2_32x32.png" class="icon bookmark-icon"/>https://discuss.streamlit.io/t/hosting-streamlit-on-github-pages/356/18</div></div><img src="https://aws1.discourse-cdn.com/standard10/uploads/streamlit/original/2X/3/3f1812e0f23fbd4a26ccc7e6a77fa265cb6dc777.png" class="bookmark-image"/></a></figure><p id="ca371934-1af7-4595-9131-c6597c480b82" class="">
+</p><p id="2a4f493c-ad88-46af-a658-9fa6f31d94ac" class="">The process for doing this is as follows:</p><p id="16100a9d-df4d-40a6-af26-1954d12cb9dc" class="">Create a virtual environment and install all the packages you need.</p><p id="31482627-d9bb-469a-beea-cd1a9d290737" class=""><code>python3 -m venv env</code> where env is the name of the virtual environment</p><p id="2266fdda-053c-48c3-868c-b9e47d1d2539" class="">Activate your virtual environment with <code> source env/bin/activate</code></p><p id="e7c707a9-216a-4279-95b6-bebd89c73eb1" class="">Go through each of your required packages (the packages you import at the top of your app) and pip install them</p><p id="503bc6c4-fa03-4e8b-a2f8-3be9839f29a5" class="">Save your virtual environment configuration to a text file with <code>pip freeze &gt; requirements.txt</code></p><p id="59569615-ee4a-41d8-89ce-6ac1048545dc" class="">Now we will create our <a href="http://setup.sh">setup.sh</a> file. For this you will need a Heroku account. Once you have one create your setup.sh file with this:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6b14fcdb-87e2-444b-9bdf-53e2c0a88db7" class="code"><code class="language-Shell">echo &quot;\
+[general]\n\
+email=\&quot;your-email@domain.com\&quot;\n\
+&quot; &gt; ~/.streamlit/credentials.toml
+
+echo &quot;\
+[server]\n\
+enableCORS=false\n\
+headless = true\n\
+port = $PORT\n\
+&quot; &gt; ~/.streamlit/config.toml</code></pre><p id="56b98f33-e96d-4a50-84ee-f4870c06d93f" class="">Now you need a Heroku Procfile. name a new file Procfile and put this in it where <code><a href="http://app.py">app.py</a></code> is the name of your streamlit app:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="9b97971e-3b86-4f69-b21f-1c4a46124408" class="code"><code class="language-Shell">web: sh setup.sh &amp;&amp; streamlit run app.py</code></pre><p id="38c61ab1-104b-4625-9120-20a4305bfbc1" class="">Now you have all the necessary files to get your project deployed. Next I am going to put the project on Github but your project can also be deployed with the Heroku CLI.</p><p id="2fda0912-6213-42cd-a3c5-f035a897c9cc" class="">Once you have your files on Github you can connect your GH account to Heroku and select the repository you want to deploy. I had trouble committing my dashboard folder to github so I had to create a new branch and manually upload the app.py, requirements.txt, procfile and <a href="http://setup.sh">setup.sh</a> to that branch. Once I did that I selected the dashboard branch from the Heroku app dashboard and deployed the app. Or at least I should have, Because my project&#x27;s required files were 700MB, well over Heroku&#x27;s 500MB limit, the app can not be hosted for free. Perhaps I will find another solution or just shell out the cash in the future but for now I am compromising for a Quickstart guide in the Github <a href="http://readme.md">README.md</a> in case anyone wants to try it out themselves</p></details></li></ul></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
